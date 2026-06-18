@@ -61,8 +61,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="text-lg sm:text-xl text-[#a1a1aa] leading-relaxed mb-10 max-w-2xl transition-opacity duration-700"
-            style={{ opacity: done ? 1 : 0 }}
+            className="text-lg sm:text-xl text-[#a1a1aa] leading-relaxed mb-10 max-w-2xl"
           >
             Full-stack developer based in London. I help businesses move from
             spreadsheets and manual processes to modern, production-ready web
@@ -70,8 +69,7 @@ export default function Hero() {
           </p>
 
           <div
-            className="flex flex-col sm:flex-row gap-4 mb-6 transition-opacity duration-700"
-            style={{ opacity: done ? 1 : 0 }}
+            className="flex flex-col sm:flex-row gap-4 mb-6"
           >
             <a
               href="#contact"
@@ -100,9 +98,8 @@ export default function Hero() {
           </div>
 
           <div
-            className="flex flex-wrap gap-3 transition-opacity duration-700"
+            className="flex flex-wrap gap-3"
             aria-label="Tech stack"
-            style={{ opacity: done ? 1 : 0 }}
           >
             {["React", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "HTML", "CSS", "JavaScript", "Python"].map(
               (tech) => (
