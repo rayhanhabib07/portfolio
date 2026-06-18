@@ -46,10 +46,13 @@ export default function Hero() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 min-h-[1.2em]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 relative"
             aria-label={HEADLINE}
           >
-            <span aria-hidden="true">
+            {/* Invisible full text reserves the final height */}
+            <span className="invisible" aria-hidden="true">{HEADLINE}</span>
+            {/* Typed text overlays in the same position */}
+            <span className="absolute inset-0" aria-hidden="true">
               {typed}
               {!done && (
                 <span
