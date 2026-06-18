@@ -56,7 +56,7 @@ export default function Hero() {
               (tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-md text-xs text-[#a1a1aa] border border-[#27272a] bg-[#18181b]"
+                  className="px-3 py-1 rounded-md text-xs text-[#fecaca] border border-[#f87171]/30 bg-[#dc2626]/15"
                 >
                   {tech}
                 </span>
