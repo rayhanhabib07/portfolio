@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -10,8 +11,6 @@ const schema = z.object({
   message: z.string().trim().min(10).max(5000),
 });
 
-// Best-effort in-memory rate limit (5 submissions per IP per 10 min).
-// Resets on cold start — acceptable for a low-traffic portfolio form.
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
 const ipTimestamps = new Map<string, number[]>();
@@ -38,6 +37,49 @@ function clientIp(req: Request): string {
   );
 }
 
+async function storeInSupabase(data: { name: string; email: string; message: string }) {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !key) {
+    console.warn("[contact] Supabase env vars missing — skipping DB write.");
+    return;
+  }
+
+  const supabase = createClient(url, key);
+  const { error } = await supabase.from("contacts").insert(data);
+
+  if (error) {
+    console.error("[contact] DB insert failed:", error);
+    throw new Error("Database write failed");
+  }
+}
+
+async function sendNotificationEmail(data: { name: string; email: string; message: string }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.CONTACT_NOTIFY_TO;
+  const from = process.env.CONTACT_FROM_EMAIL;
+
+  if (!apiKey || !to || !from) {
+    console.warn("[contact] Resend env vars missing — skipping email.");
+    return;
+  }
+
+  const resend = new Resend(apiKey);
+  const { error } = await resend.emails.send({
+    from,
+    to,
+    subject: `New contact from ${data.name} — shadhincodes.com`,
+    text: `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`,
+    replyTo: data.email,
+  });
+
+  if (error) {
+    console.error("[contact] Email send failed:", error);
+    throw new Error("Email send failed");
+  }
+}
+
 export async function POST(request: Request) {
   if (isRateLimited(clientIp(request))) {
     return NextResponse.json(
@@ -59,26 +101,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: msg }, { status: 400 });
   }
 
-  const { name, email, message } = parsed.data;
+  const data = parsed.data;
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    console.warn("[contact] Supabase env vars missing — skipping DB write.");
-  } else {
-    const supabase = createClient(supabaseUrl, supabaseKey);
-    const { error } = await supabase
-      .from("contacts")
-      .insert({ name, email, message });
-
-    if (error) {
-      console.error("[contact] DB insert failed:", error);
-      return NextResponse.json(
-        { ok: false, error: "Something went wrong. Please try again." },
-        { status: 500 }
-      );
-    }
+  try {
+    await storeInSupabase(data);
+    await sendNotificationEmail(data);
+  } catch (error) {
+    console.error("[contact] Unexpected error:", error);
+    return NextResponse.json(
+      { ok: false, error: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });
