@@ -24,7 +24,7 @@ export default function Hero() {
             applications.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-14">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <a
               href="#contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-medium text-sm text-white bg-[#3b82f6] hover:bg-[#2563eb] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b]"
@@ -52,7 +52,7 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-wrap gap-3" aria-label="Tech stack">
-            {["React", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS"].map(
+            {["React", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "HTML", "CSS", "JavaScript", "Python"].map(
               (tech) => (
                 <span
                   key={tech}
