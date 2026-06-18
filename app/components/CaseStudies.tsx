@@ -52,6 +52,24 @@ const caseStudies: CaseStudy[] = [
       { label: "View Source", href: "https://github.com/rayhanhabib07/DevPulse" },
     ],
   },
+  {
+    number: "03",
+    name: "Agency Starter",
+    tagline: "Production-ready agency landing page with contact form pipeline",
+    problem:
+      "Freelancers and small agencies need a professional web presence fast, but most templates ship with broken contact forms or none at all. The result is either a static page with a mailto link (which kills conversions) or weeks spent wiring up form handling, email notifications, and database storage from scratch.",
+    approach:
+      "Build an opinionated starter that works end-to-end out of the box: landing page, contact form with server-side validation, database storage, and email notifications. Every integration degrades gracefully — if a credential isn’t configured yet, that step is skipped instead of crashing. This lets developers ship immediately and wire up services incrementally.",
+    build:
+      "Next.js App Router with TypeScript and Tailwind CSS for the frontend. The contact form submits to a serverless API route that validates input with Zod, stores submissions in a Supabase Postgres table (with Row Level Security, no public access), and sends email notifications via Resend. Rate limiting (5 per IP per 10 minutes) is built in. The database migration lives in the repo and the schema enforces server-only access through RLS with zero policies.",
+    result:
+      "A deployable, production-grade agency starter used as the foundation for client projects. Live on Vercel with automatic CI/CD from GitHub. The contact pipeline handles validation, storage, and notifications — a complete backend in a single API route that just works.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Resend", "Vercel"],
+    links: [
+      { label: "Live Demo", href: "https://agency-starter-app.vercel.app" },
+      { label: "View Source", href: "https://github.com/rayhanhabib07/agency-starter" },
+    ],
+  },
 ];
 
 function GitHubIcon() {
