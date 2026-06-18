@@ -1,9 +1,78 @@
-export default function Testimonials() {
+type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+};
+
+// ──────────────────────────────────────────────────
+// ADD TESTIMONIALS HERE — paste in quotes as they
+// come in from Upwork or direct clients.
+//
+// Example:
+// {
+//   quote: "Shadhin delivered our dashboard ahead of schedule...",
+//   author: "Jane Smith",
+//   role: "CEO, Acme Corp",
+//   rating: 5,
+// },
+// ──────────────────────────────────────────────────
+const testimonials: Testimonial[] = [];
+
+function StarIcon({ filled }: { filled: boolean }) {
   return (
-    <section
-      className="py-24 px-6"
-      aria-labelledby="testimonials-heading"
+    <svg
+      className={`w-4 h-4 ${filled ? "text-amber-400" : "text-[#27272a]"}`}
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
     >
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
+}
+
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <div className="p-6 rounded-xl border border-[#27272a] bg-[#18181b] text-left flex flex-col">
+      <div className="flex gap-1 mb-4">
+        {[...Array(5)].map((_, i) => (
+          <StarIcon key={i} filled={i < testimonial.rating} />
+        ))}
+      </div>
+      <blockquote className="text-sm text-[#a1a1aa] leading-relaxed mb-6 flex-1">
+        &ldquo;{testimonial.quote}&rdquo;
+      </blockquote>
+      <div>
+        <p className="text-sm font-medium text-white">{testimonial.author}</p>
+        <p className="text-xs text-[#52525b]">{testimonial.role}</p>
+      </div>
+    </div>
+  );
+}
+
+function PlaceholderCard() {
+  return (
+    <div className="p-6 rounded-xl border border-dashed border-[#27272a] bg-[#18181b]/40 flex flex-col items-center justify-center min-h-[200px]">
+      <div className="flex gap-1 mb-4">
+        {[...Array(5)].map((_, j) => (
+          <StarIcon key={j} filled={false} />
+        ))}
+      </div>
+      <p className="text-sm text-[#3f3f46] italic mb-3">
+        &ldquo;Review pending&rdquo;
+      </p>
+      <div className="w-8 h-[1px] bg-[#27272a]" aria-hidden="true" />
+    </div>
+  );
+}
+
+export default function Testimonials() {
+  const hasTestimonials = testimonials.length > 0;
+  const placeholderCount = Math.max(0, 3 - testimonials.length);
+
+  return (
+    <section className="py-24 px-6" aria-labelledby="testimonials-heading">
       <div className="max-w-5xl mx-auto text-center">
         <p className="text-sm font-medium text-[#3b82f6] mb-3 tracking-wide">
           Testimonials
@@ -15,40 +84,19 @@ export default function Testimonials() {
           What Clients Say
         </h2>
         <p className="text-[#a1a1aa] text-lg mb-14 max-w-xl mx-auto">
-          Every completed project becomes a testimonial here. Real feedback from
-          real engagements — coming soon.
+          {hasTestimonials
+            ? "Real feedback from real engagements."
+            : "Every completed project becomes a testimonial here. Real feedback from real engagements — coming soon."}
         </p>
 
-        {/* Placeholder cards — replace with real testimonials as they come in.
-            Each card should have: quote, author name, role/company, optional avatar.
-            Example:
-            { quote: "Shadhin delivered our dashboard ahead of schedule...",
-              author: "Jane Smith", role: "CEO, Acme Corp" } */}
         <div className="grid md:grid-cols-3 gap-6">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="p-6 rounded-xl border border-dashed border-[#27272a] bg-[#18181b]/40 flex flex-col items-center justify-center min-h-[200px]"
-            >
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, j) => (
-                  <svg
-                    key={j}
-                    className="w-4 h-4 text-[#27272a]"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-sm text-[#3f3f46] italic mb-3">
-                &ldquo;Review pending&rdquo;
-              </p>
-              <div className="w-8 h-[1px] bg-[#27272a]" aria-hidden="true" />
-            </div>
+          {testimonials.map((t) => (
+            <TestimonialCard key={t.author} testimonial={t} />
           ))}
+          {placeholderCount > 0 &&
+            [...Array(placeholderCount)].map((_, i) => (
+              <PlaceholderCard key={`placeholder-${i}`} />
+            ))}
         </div>
 
         <a
