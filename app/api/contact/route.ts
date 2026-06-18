@@ -7,7 +7,13 @@ export const runtime = "nodejs";
 
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
-  email: z.string().trim().email().max(200),
+  email: z
+    .email()
+    .trim()
+    .max(200)
+    .refine((e) => !e.includes("\n") && !e.includes("\r"), {
+      message: "Invalid email",
+    }),
   message: z.string().trim().min(10).max(5000),
 });
 
@@ -30,14 +36,21 @@ function isRateLimited(ip: string): boolean {
 }
 
 function clientIp(req: Request): string {
+  // On Vercel, x-real-ip is set by the platform and is trustworthy.
+  // x-forwarded-for is checked as fallback but only the first value
+  // (set by Vercel's edge proxy) is used.
   return (
+    req.headers.get("x-real-ip")?.trim() ??
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-    req.headers.get("x-real-ip") ??
     "unknown"
   );
 }
 
-async function storeInSupabase(data: { name: string; email: string; message: string }) {
+async function storeInSupabase(data: {
+  name: string;
+  email: string;
+  message: string;
+}) {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -50,12 +63,16 @@ async function storeInSupabase(data: { name: string; email: string; message: str
   const { error } = await supabase.from("contacts").insert(data);
 
   if (error) {
-    console.error("[contact] DB insert failed:", error);
+    console.error("[contact] DB insert failed:", error.code);
     throw new Error("Database write failed");
   }
 }
 
-async function sendNotificationEmail(data: { name: string; email: string; message: string }) {
+async function sendNotificationEmail(data: {
+  name: string;
+  email: string;
+  message: string;
+}) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_NOTIFY_TO;
   const from = process.env.CONTACT_FROM_EMAIL;
@@ -69,13 +86,13 @@ async function sendNotificationEmail(data: { name: string; email: string; messag
   const { error } = await resend.emails.send({
     from,
     to,
-    subject: `New contact from ${data.name} — shadhincodes.com`,
+    subject: `New contact from ${data.name.slice(0, 50)} — shadhincodes.com`,
     text: `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`,
     replyTo: data.email,
   });
 
   if (error) {
-    console.error("[contact] Email send failed:", error);
+    console.error("[contact] Email send failed:", error.name);
     throw new Error("Email send failed");
   }
 }
@@ -92,13 +109,18 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Invalid request." },
+      { status: 400 }
+    );
   }
 
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
-    const msg = parsed.error.issues[0]?.message ?? "Invalid request.";
-    return NextResponse.json({ ok: false, error: msg }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Please check your input and try again." },
+      { status: 400 }
+    );
   }
 
   const data = parsed.data;
@@ -106,8 +128,7 @@ export async function POST(request: Request) {
   try {
     await storeInSupabase(data);
     await sendNotificationEmail(data);
-  } catch (error) {
-    console.error("[contact] Unexpected error:", error);
+  } catch {
     return NextResponse.json(
       { ok: false, error: "Something went wrong. Please try again." },
       { status: 500 }
