@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Rayhan Habib Mohammad Shadhin — Computer Science Student & Startup CEO",
+  title: "Shadhin — Full-Stack Web Apps & Dashboards",
   description:
-    "Personal portfolio of Rayhan Habib Mohammad Shadhin — CS undergraduate at London South Bank University, CEO of Craftly, building AI-powered products from London.",
+    "I build full-stack web apps, admin dashboards, and legacy-to-modern migrations. React, Node.js, TypeScript, PostgreSQL. Based in London, UK.",
+  openGraph: {
+    title: "Shadhin — Full-Stack Web Apps & Dashboards",
+    description:
+      "Full-stack developer helping businesses modernize operations with React, Node.js, TypeScript, and PostgreSQL.",
+    type: "website",
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shadhin — Full-Stack Web Apps & Dashboards",
+    description:
+      "Full-stack developer helping businesses modernize operations with React, Node.js, TypeScript, and PostgreSQL.",
+  },
 };
 
 export default function RootLayout({
@@ -24,11 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body className="min-h-screen flex flex-col">{children}</body>
+    <html lang="en" className={inter.variable}>
+      <body>{children}</body>
     </html>
   );
 }

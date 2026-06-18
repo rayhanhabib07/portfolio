@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section
@@ -5,88 +7,99 @@ export default function About() {
       className="py-24 px-6"
       aria-labelledby="about-heading"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Text */}
-          <div>
-            <p className="text-sm font-mono text-[#3b82f6] mb-3 tracking-widest uppercase">
-              01 / About
+      <div className="max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-5 gap-12 items-start">
+          {/* Photo placeholder — replace src with a real headshot */}
+          <div className="md:col-span-2 flex justify-center md:justify-start">
+            <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl border border-[#27272a] bg-[#18181b] overflow-hidden">
+              <Image
+                src="/photo.png"
+                alt="Shadhin"
+                width={256}
+                height={256}
+                className="object-cover object-top w-full h-full"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Bio */}
+          <div className="md:col-span-3">
+            <p className="text-sm font-medium text-[#3b82f6] mb-3 tracking-wide">
+              About
             </p>
             <h2
               id="about-heading"
               className="text-3xl sm:text-4xl font-bold text-white mb-6"
             >
-              About Me
+              Hey, I&apos;m Shadhin.
             </h2>
-            <p className="text-[#a1a1aa] text-base sm:text-lg leading-relaxed">
-              I&apos;m a Computer Science undergraduate at London South Bank
-              University and CEO of Craftly, a startup building an AI platform
-              that lets non-technical users create and publish apps from
-              plain-language prompts. I combine a technical foundation in
-              Python, Java, C++, JavaScript, TypeScript, and SQL with proven
-              leadership, communication, and multilingual skills across English,
-              Bengali, and Hindi. I&apos;ve been recognised three times as
-              Employee of the Month for reliability and performance.
-            </p>
-          </div>
 
-          {/* Info cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                  </svg>
-                ),
-                label: "Education",
-                value: "CS @ London South Bank University",
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
-                  </svg>
-                ),
-                label: "Role",
-                value: "CEO, Craftly",
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                ),
-                label: "Location",
-                value: "London SW8, UK",
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                ),
-                label: "Status",
-                value: "Open to opportunities",
-              },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="p-4 rounded-xl border border-[#27272a] bg-[#111111] hover:border-[#3b82f6]/50 transition-colors duration-300"
+            <div className="space-y-4 text-[#a1a1aa] text-base leading-relaxed">
+              <p>
+                I&apos;m a full-stack developer based in London, UK. I build web
+                applications for businesses that have outgrown spreadsheets and
+                manual workflows. My stack is React, Node.js, TypeScript, and
+                PostgreSQL — tools I&apos;ve used to ship e-commerce platforms,
+                REST APIs, and admin dashboards.
+              </p>
+              <p>
+                I am one of the few who lead{" "}
+                <a
+                  href="https://hello.craftlyrobot.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#3b82f6] hover:underline"
+                >
+                  Craftly
+                </a>
+                , an AI startup that lets non-technical users build apps from
+                plain-language prompts — which means I think about software from
+                both the builder&apos;s and the user&apos;s perspective.
+              </p>
+              <p>
+                When you work with me, you get direct communication, clean code,
+                and a focus on shipping something that actually solves your
+                problem. No layers, no hand-offs — I own the project end to end.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-5 mt-8">
+              <a
+                href="https://github.com/rayhanhabib07"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#52525b] hover:text-white transition-colors duration-200"
+                aria-label="GitHub profile (opens in new tab)"
               >
-                <div className="text-[#3b82f6] mb-2">{item.icon}</div>
-                <p className="text-xs text-[#71717a] mb-1 font-mono uppercase tracking-wider">
-                  {item.label}
-                </p>
-                <p className="text-sm text-[#ededed] font-medium">
-                  {item.value}
-                </p>
-              </div>
-            ))}
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+              <a
+                href="https://linkedin.com/in/rayhanhabib07"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#52525b] hover:text-white transition-colors duration-200"
+                aria-label="LinkedIn profile (opens in new tab)"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
