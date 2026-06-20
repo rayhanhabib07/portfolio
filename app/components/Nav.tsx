@@ -29,7 +29,7 @@ export default function Nav() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#09090b]/90 backdrop-blur-md border-b border-[#27272a]"
+          ? "bg-white/90 backdrop-blur-md border-b border-[#E5E7EB]"
           : "bg-transparent"
       }`}
     >
@@ -43,10 +43,10 @@ export default function Nav() {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="text-lg font-semibold text-white tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] rounded"
+          className="text-lg font-semibold text-[#1B2631] tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] rounded"
           aria-label="Shadhin — home"
         >
-          shadhin<span className="text-[#3b82f6]">.</span>
+          shadhin<span className="text-[#4A90E2]">.</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -59,7 +59,7 @@ export default function Nav() {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className="text-sm text-[#a1a1aa] hover:text-white transition-colors duration-200"
+                  className="text-sm text-[#6B7280] hover:text-[#1B2631] transition-colors duration-200"
                 >
                   {link.label}
                 </a>
@@ -72,31 +72,31 @@ export default function Nav() {
               e.preventDefault();
               handleNavClick("#contact");
             }}
-            className="text-sm font-medium px-4 py-2 rounded-lg bg-[#3b82f6] text-white hover:bg-[#2563eb] transition-colors duration-200"
+            className="text-sm font-medium px-4 py-2 rounded-lg bg-[#4A90E2] text-white hover:bg-[#357ABD] transition-colors duration-200"
           >
             Book a Call
           </a>
         </div>
 
         <button
-          className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] rounded"
+          className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] rounded"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((prev) => !prev)}
         >
           <span
-            className={`block w-5 h-0.5 bg-white transition-all duration-300 origin-center ${
+            className={`block w-5 h-0.5 bg-[#1B2631] transition-all duration-300 origin-center ${
               menuOpen ? "rotate-45 translate-y-[7px]" : ""
             }`}
           />
           <span
-            className={`block w-5 h-0.5 bg-white transition-all duration-200 ${
+            className={`block w-5 h-0.5 bg-[#1B2631] transition-all duration-200 ${
               menuOpen ? "opacity-0 scale-x-0" : ""
             }`}
           />
           <span
-            className={`block w-5 h-0.5 bg-white transition-all duration-300 origin-center ${
+            className={`block w-5 h-0.5 bg-[#1B2631] transition-all duration-300 origin-center ${
               menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
             }`}
           />
@@ -105,8 +105,8 @@ export default function Nav() {
 
       <div
         id="mobile-menu"
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-[#09090b]/95 backdrop-blur-md border-b border-[#27272a] ${
-          menuOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-[#E5E7EB] ${
+          menuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         }`}
         aria-hidden={!menuOpen}
       >
@@ -119,7 +119,7 @@ export default function Nav() {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="block text-base text-[#a1a1aa] hover:text-white transition-colors duration-200 py-1"
+                className="block text-base text-[#6B7280] hover:text-[#1B2631] transition-colors duration-200 py-1"
                 tabIndex={menuOpen ? 0 : -1}
               >
                 {link.label}
@@ -133,7 +133,7 @@ export default function Nav() {
                 e.preventDefault();
                 handleNavClick("#contact");
               }}
-              className="inline-block text-sm font-medium px-4 py-2 rounded-lg bg-[#3b82f6] text-white hover:bg-[#2563eb] transition-colors duration-200 mt-1"
+              className="inline-block text-sm font-medium px-4 py-2 rounded-lg bg-[#4A90E2] text-white hover:bg-[#357ABD] transition-colors duration-200 mt-1"
               tabIndex={menuOpen ? 0 : -1}
             >
               Book a Call

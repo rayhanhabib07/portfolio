@@ -16,9 +16,9 @@ const caseStudies: CaseStudy[] = [
     name: "FruitBD",
     tagline: "Full-stack e-commerce platform with admin dashboard",
     problem:
-      "An online fruit and grocery retailer was processing orders through WhatsApp messages and tracking inventory in a shared spreadsheet. Orders were routinely lost or duplicated, stock levels were unreliable, and the owner had zero visibility into revenue patterns. They needed a proper e-commerce system with admin control, secure payments, and real-time inventory — but couldn’t justify enterprise pricing.",
+      "An online fruit and grocery retailer was processing orders through WhatsApp messages and tracking inventory in a shared spreadsheet. Orders were routinely lost or duplicated, stock levels were unreliable, and the owner had zero visibility into revenue patterns. They needed a proper e-commerce system with admin control, secure payments, and real-time inventory — but couldn't justify enterprise pricing.",
     approach:
-      "I scoped the build in three phases: storefront first, so customers could place structured orders from day one; admin dashboard second, giving the owner full operational control without touching code; and payment integration last. Each phase shipped as a working increment — the business didn’t have to wait for everything to be built before getting value.",
+      "I scoped the build in three phases: storefront first, so customers could place structured orders from day one; admin dashboard second, giving the owner full operational control without touching code; and payment integration last. Each phase shipped as a working increment — the business didn't have to wait for everything to be built before getting value.",
     build:
       "The frontend is a React application with TypeScript and Tailwind CSS — component-driven, fully responsive, and optimised for the product browsing and checkout flow. The backend runs Node.js with Express and TypeScript, backed by PostgreSQL for relational data across products, orders, customers, and inventory. Key engineering decisions: JWT-based authentication with role separation (customer vs. admin), a normalised inventory schema that adjusts stock levels on every order event, and a clean API layer separating business logic from route handling.",
     result:
@@ -115,10 +115,10 @@ function SectionBlock({
 }) {
   return (
     <div>
-      <p className="text-xs font-medium text-[#3b82f6] uppercase tracking-widest mb-2">
+      <p className="text-xs font-medium text-[#4A90E2] uppercase tracking-widest mb-2">
         {label}
       </p>
-      <p className="text-[#a1a1aa] text-sm sm:text-base leading-relaxed">
+      <p className="text-[#6B7280] text-sm sm:text-base leading-relaxed">
         {children}
       </p>
     </div>
@@ -133,16 +133,16 @@ export default function CaseStudies() {
       aria-labelledby="work-heading"
     >
       <div className="max-w-5xl mx-auto">
-        <p className="text-sm font-medium text-[#3b82f6] mb-3 tracking-wide">
+        <p className="text-sm font-medium text-[#4A90E2] mb-3 tracking-wide">
           Case Studies
         </p>
         <h2
           id="work-heading"
-          className="text-3xl sm:text-4xl font-bold text-white mb-4"
+          className="text-3xl sm:text-4xl font-bold text-[#1B2631] mb-4"
         >
           Featured Work
         </h2>
-        <p className="text-[#a1a1aa] text-lg mb-16 max-w-2xl">
+        <p className="text-[#6B7280] text-lg mb-16 max-w-2xl">
           Each project is written as a story — the problem, the approach, the
           engineering, and the outcome.
         </p>
@@ -151,17 +151,17 @@ export default function CaseStudies() {
           {caseStudies.map((study) => (
             <article
               key={study.name}
-              className="rounded-2xl border border-[#27272a] bg-[#18181b] p-6 sm:p-10"
+              className="rounded-2xl border border-[#E5E7EB] bg-[#F9FAFB] p-6 sm:p-10"
             >
               <div className="flex items-start gap-4 mb-8">
-                <span className="text-sm font-mono text-[#3b82f6] mt-1">
+                <span className="text-sm font-mono text-[#4A90E2] mt-1">
                   {study.number}
                 </span>
                 <div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#1B2631]">
                     {study.name}
                   </h3>
-                  <p className="text-[#a1a1aa] mt-1">{study.tagline}</p>
+                  <p className="text-[#6B7280] mt-1">{study.tagline}</p>
                 </div>
               </div>
 
@@ -172,7 +172,7 @@ export default function CaseStudies() {
                 </SectionBlock>
 
                 <div>
-                  <p className="text-xs font-medium text-[#3b82f6] uppercase tracking-widest mb-3">
+                  <p className="text-xs font-medium text-[#4A90E2] uppercase tracking-widest mb-3">
                     The Build
                   </p>
                   <div
@@ -182,13 +182,13 @@ export default function CaseStudies() {
                     {study.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded-md text-xs font-medium text-[#a1a1aa] border border-[#27272a] bg-[#09090b]"
+                        className="px-2.5 py-1 rounded-md text-xs font-medium text-[#6B7280] border border-[#E5E7EB] bg-white"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <p className="text-[#a1a1aa] text-sm sm:text-base leading-relaxed">
+                  <p className="text-[#6B7280] text-sm sm:text-base leading-relaxed">
                     {study.build}
                   </p>
                 </div>
@@ -196,14 +196,14 @@ export default function CaseStudies() {
                 <SectionBlock label="The Result">{study.result}</SectionBlock>
               </div>
 
-              <div className="flex gap-4 mt-10 pt-6 border-t border-[#27272a]">
+              <div className="flex gap-4 mt-10 pt-6 border-t border-[#E5E7EB]">
                 {study.links.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-[#3b82f6] hover:text-[#2563eb] transition-colors duration-200"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-[#4A90E2] hover:text-[#357ABD] transition-colors duration-200"
                     aria-label={`${link.label} for ${study.name} (opens in new tab)`}
                   >
                     {link.label === "View Source" ? (

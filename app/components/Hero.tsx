@@ -37,7 +37,7 @@ export default function Hero() {
     >
       <div className="max-w-5xl mx-auto px-6 py-20 sm:py-28">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#27272a] bg-[#18181b] mb-8 text-sm text-[#a1a1aa]">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E5E7EB] bg-[#F4F4F5] mb-8 text-sm text-[#6B7280]">
             <span
               className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
               aria-hidden="true"
@@ -46,37 +46,31 @@ export default function Hero() {
           </div>
 
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6 relative"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1B2631] leading-[1.08] tracking-tight mb-6 relative"
             aria-label={HEADLINE}
           >
-            {/* Invisible full text reserves the final height */}
             <span className="invisible" aria-hidden="true">{HEADLINE}</span>
-            {/* Typed text overlays in the same position */}
             <span className="absolute inset-0" aria-hidden="true">
               {typed}
               {!done && (
                 <span
-                  className="inline-block w-[3px] h-[0.85em] bg-[#3b82f6] align-baseline ml-[2px] rounded-sm"
+                  className="inline-block w-[3px] h-[0.85em] bg-[#4A90E2] align-baseline ml-[2px] rounded-sm"
                   style={{ animation: "blink 0.53s step-end infinite" }}
                 />
               )}
             </span>
           </h1>
 
-          <p
-            className="text-lg sm:text-xl text-[#a1a1aa] leading-relaxed mb-10 max-w-2xl"
-          >
+          <p className="text-lg sm:text-xl text-[#6B7280] leading-relaxed mb-10 max-w-2xl">
             Full-stack developer based in London. I help businesses move from
             spreadsheets and manual processes to modern, production-ready web
             applications.
           </p>
 
-          <div
-            className="flex flex-col sm:flex-row gap-4 mb-6"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-medium text-sm text-white bg-[#3b82f6] hover:bg-[#2563eb] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b]"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-medium text-sm text-white bg-[#4A90E2] hover:bg-[#357ABD] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               Book a Discovery Call
               <svg
@@ -94,21 +88,18 @@ export default function Hero() {
             </a>
             <a
               href="#work"
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg font-medium text-sm text-white border border-[#27272a] hover:border-[#3b82f6] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3b82f6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b]"
+              className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg font-medium text-sm text-[#1B2631] border border-[#E5E7EB] hover:border-[#4A90E2] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               See My Work
             </a>
           </div>
 
-          <div
-            className="flex flex-wrap gap-3"
-            aria-label="Tech stack"
-          >
+          <div className="flex flex-wrap gap-3" aria-label="Tech stack">
             {["React", "Node.js", "TypeScript", "PostgreSQL", "Tailwind CSS", "HTML", "CSS", "JavaScript", "Python"].map(
               (tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-md text-xs text-[#fecaca] border border-[#f87171]/30 bg-[#dc2626]/15"
+                  className="px-3 py-1 rounded-md text-xs text-[#B91C1C] border border-[#FCA5A5] bg-[#FEE2E2]"
                 >
                   {tech}
                 </span>
