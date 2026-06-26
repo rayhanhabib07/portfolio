@@ -5,6 +5,7 @@ import Services from "./components/Services";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
 import Blog from "./components/Blog";
+import AfterLaunch from "./components/AfterLaunch";
 import Contact from "./components/Contact";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <About />
         <Testimonials />
         <Blog />
+        <AfterLaunch />
         <Contact />
       </main>
       <footer className="border-t border-[#333330] py-10 px-6">
