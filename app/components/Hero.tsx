@@ -37,16 +37,13 @@ export default function Hero() {
     >
       <div className="max-w-5xl mx-auto px-6 py-20 sm:py-28">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E5E7EB] bg-[#F4F4F5] mb-8 text-sm text-[#6B7280]">
-            <span
-              className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
-              aria-hidden="true"
-            />
-            Available for new projects
-          </div>
+          <p className="text-xs uppercase tracking-[0.2em] text-[#8a8680] mb-8">
+            A Field Guide to Shadhin · Full-Stack Developer
+          </p>
 
           <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1B2631] leading-[1.08] tracking-tight mb-6 relative"
+            className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#e0ddd5] leading-[1.12] tracking-tight mb-8 relative"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             aria-label={HEADLINE}
           >
             <span className="invisible" aria-hidden="true">{HEADLINE}</span>
@@ -54,41 +51,32 @@ export default function Hero() {
               {typed}
               {!done && (
                 <span
-                  className="inline-block w-[3px] h-[0.85em] bg-[#4A90E2] align-baseline ml-[2px] rounded-sm"
+                  className="inline-block w-[2px] h-[0.8em] bg-[#c8b89a] align-baseline ml-[2px]"
                   style={{ animation: "blink 0.53s step-end infinite" }}
                 />
               )}
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-[#6B7280] leading-relaxed mb-10 max-w-2xl">
+          <p className="text-base sm:text-lg text-[#8a8680] leading-relaxed mb-12 max-w-2xl">
             Full-stack developer based in London. I help businesses move from
             spreadsheets and manual processes to modern, production-ready web
             applications.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-14">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-medium text-sm text-white bg-[#4A90E2] hover:bg-[#357ABD] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded font-medium text-sm bg-[#e0ddd5] text-[#1a1a1a] hover:bg-[#c8b89a] transition-colors duration-200"
             >
               Book a Discovery Call
-              <svg
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
             <a
               href="#work"
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg font-medium text-sm text-[#1B2631] border border-[#E5E7EB] hover:border-[#4A90E2] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className="inline-flex items-center justify-center px-7 py-3.5 rounded font-medium text-sm text-[#e0ddd5] border border-[#333330] hover:border-[#8a8680] transition-colors duration-200"
             >
               See My Work
             </a>
@@ -99,7 +87,7 @@ export default function Hero() {
               (tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 rounded-md text-xs text-[#B91C1C] border border-[#FCA5A5] bg-[#FEE2E2]"
+                  className="px-3 py-1 rounded text-xs text-[#8a8680] border border-[#333330]"
                 >
                   {tech}
                 </span>
